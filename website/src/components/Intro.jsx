@@ -19,8 +19,8 @@ const Intro = () => {
     const [showContacts, setShowContacts] = useState(false);
      const [parsedEducation, setParsedEducation] = useState([]);
       const [showEducation, setShowEducation] = useState(false);
-    const [parsedCopyContacts, setParsedCopyContacts] = useState({}); // New state for copyable contacts
-    const [showCopyContacts, setShowCopyContacts] = useState(false) // New state for copyable contacts
+    const [parsedCopyContacts, setParsedCopyContacts] = useState({});
+    const [showCopyContacts, setShowCopyContacts] = useState(false);
      const [showHobbies, setShowHobbies] = useState(false);
     const [parsedHobbies, setParsedHobbies] = useState([]);
       const [firstScroll, setFirstScroll] = useState(true);
@@ -201,7 +201,6 @@ const hobbies = [
         style: {},
         showHobbies: true
     },
-    // Move contacts to the end
     {
         content:
             `/*
@@ -210,8 +209,7 @@ const hobbies = [
      * If you wanna reach out... here are my socials (please dont spam me)
      */
     contacts = {
-        email: "estherdjaidiguna@gmail.com",
-        discord: "ashtherz",
+        email: "estherdjaidiguna@gmail.com"
     };`,
         style: {},
         showCopyContacts: true
