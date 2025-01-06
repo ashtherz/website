@@ -25,7 +25,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #00b8ff;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +35,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+code::after {
+  content: '';
+  display: inline-block;
+  background-color: white;
+  width: 10px;
+  height: 1.3em;
+  vertical-align: text-bottom;
+  animation: blink-cursor 1s steps(1) infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink-cursor {
+    50% {
+        opacity: 0;
+    }
 }
