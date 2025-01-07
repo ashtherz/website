@@ -3,6 +3,8 @@ import { FaCopy } from 'react-icons/fa';
 import { SiJavascript, SiTypescript, SiPython, SiAndroid, SiCodeforces, SiGo, SiReact, SiNextdotjs,
     SiTailwindcss, SiHtml5, SiStyledcomponents, SiNodedotjs, SiExpress, SiDocker,
     SiPostgresql, SiGit, SiFigma, SiLinux, SiAmazon } from "react-icons/si";
+import { Copy, Check } from 'lucide-react';
+
 
 const SITE_DATA = {
     skills: {
@@ -70,7 +72,7 @@ const SITE_DATA = {
         {
             institution: "University of New South Wales",
             degree: "Bachelor of Computer Science",
-            years: "2021-2024"
+            years: "2022-2024"
         }
     ],
     hobbies: [
@@ -174,7 +176,7 @@ const theme = {
         {
             content: `/* 
  * Uh Oh that didnt do anything!
- * Hm... What if we make this look more like a proper IDE...
+ * Hm... maybe we should add some colors yeah! like an IDE
  * Time to add some color to our syntax!
  */
 
@@ -244,7 +246,9 @@ const mySkills = {
         },
         {
             content: `/* 
- * And here are some of my super pog projects!
+ * I did plenty of group projects together!
+ * Some are silly personal sites like these hehe
+ * And here they are!
  */
 
 const projects = [
@@ -284,14 +288,16 @@ const projects = [
         },
         {
             content: `/*
- * And I also have an education
+ * UH oh this is kinda goofy...
+ * But Im currently doing a compsci degree so uh... 
+ * YEAHHH EDUCATIONNNN
  */
 
 const education = [
     {
         institution: "University of New South Wales",
         degree: "Bachelor of Computer Science",
-        years: "2021-2024"
+        years: "2022-2025"
     }
 ];`,
             style: {},
@@ -299,7 +305,8 @@ const education = [
         },
         {
             content: `/*
- * And here are my hobbies :)
+ * Here are also some of my basic npc activities
+ * Or what other people might call hobbies
  */
 
 const hobbies = [
@@ -316,7 +323,8 @@ const hobbies = [
         {
             content: `/*
  * Ok ok... enough about my skills and projects...
- * If you wanna reach out... here are my copyable socials
+ * If you wanna reach out... here are my socials! 
+ * And thanks for watching this animation to the end if you did hehe
  */
 
 const copyContacts = {
@@ -427,6 +435,63 @@ const copyContacts = {
             }));
         }
     };
+    
+    const CopyableContacts = ({ contacts }) => {
+        const [copiedStates, setCopiedStates] = useState({});
+      
+        const handleCopy = async (key, value) => {
+          try {
+            await navigator.clipboard.writeText(value);
+            setCopiedStates({ ...copiedStates, [key]: true });
+            
+            // Reset the copied state after 2 seconds
+            setTimeout(() => {
+              setCopiedStates(prev => ({ ...prev, [key]: false }));
+            }, 2000);
+          } catch (err) {
+            console.error('Failed to copy text: ', err);
+          }
+        };
+      
+        const getLabel = (key) => {
+          const labels = {
+            email: "Email",
+            discord: "Discord",
+            linkedin: "LinkedIn",
+            genshinUid: "Genshin UID",
+            projectSekaiId: "Project Sekai ID"
+          };
+          return labels[key] || key;
+        };
+      
+        return (
+          <div className="space-y-2">
+            {Object.entries(contacts).map(([key, value]) => (
+              <div key={key} 
+                   className="bg-[#44475a] rounded-lg p-4 flex items-center justify-between group hover:bg-[#4a4d5e] transition-colors duration-200">
+                <span className="text-[#f8f8f2]">{getLabel(key)}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-[#a6c9e2]">{value}</span>
+                  <button
+                    onClick={() => handleCopy(key, value)}
+                    className="text-[#73e2a6] hover:text-[#8ee8bb] transition-colors duration-200 p-1 rounded-md hover:bg-[#353846]"
+                    title="Copy to clipboard"
+                  >
+                    {copiedStates[key] ? (
+                      <div className="flex items-center gap-1">
+                        <Check size={16} />
+                        <span className="text-xs">Copied!</span>
+                      </div>
+                    ) : (
+                      <Copy size={16} />
+                    )}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      };
 
     const getContentSectionStyles = () => {
         if (!state.colorMode) {
@@ -588,7 +653,7 @@ useEffect(() => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        View on GitHub →
+                        View Project →
                       </a>
                     </div>
                  ))}
@@ -638,44 +703,62 @@ useEffect(() => {
                     </div>
                 )}
                  {/* copyable contact Section */}
-                    {state.sections.copyContacts.show && Object.keys(state.sections.copyContacts.data).length > 0 && (
-                       <div className="transform transition-all duration-500 ease-out opacity-0 translate-y-4 animate-in bg-[#282a36] rounded-lg p-4 md:p-6" style={{
-                         animation: 'fadeInUp 0.6s ease-out forwards',
-                           animationDelay: '0.2s'
-                      }}>
-                    <h2 className="text-xl md:text-2xl font-bold mb-4 text-[#f778ba]">
-                        Copyable Contacts
-                    </h2>
-                      <div className="space-y-2">
-                        {Object.entries(state.sections.copyContacts.data).map(([key, value]) => (
-                          <div key={key} className="bg-[#44475a] rounded-lg p-4 flex justify-between items-center">
-                                 <span className="text-[#f8f8f2]">
-                                   {key === 'email' && "Email"}
-                                   {key === 'discord' && "Discord"}
-                                   {key === 'linkedin' && "LinkedIn"}
-                                   {key === 'genshinUid' && "Genshin UID"}
-                                  {key === 'projectSekaiId' && "Project Sekai ID"}
-                               </span>
-                                <span className="text-[#a6c9e2]">
-                                     {value}
-                                 </span>
-                          </div>
-                        ))}
-                      </div>
-                   </div>
-                 )}
+                 {state.sections.copyContacts.show && Object.keys(state.sections.copyContacts.data).length > 0 && (
+                    <div className="transform transition-all duration-500 ease-out opacity-0 translate-y-4 animate-in bg-[#282a36] rounded-lg p-4 md:p-6" 
+                         style={{
+                             animation: 'fadeInUp 0.6s ease-out forwards',
+                             animationDelay: '0.2s'
+                         }}>
+                        <h2 className="text-xl md:text-2xl font-bold mb-4 text-[#f778ba]">
+                            Contacts
+                        </h2>
+                        <div className="space-y-2">
+                            {Object.entries(state.sections.copyContacts.data).map(([key, value]) => (
+                                <div key={key} 
+                                     className="bg-[#44475a] rounded-lg p-4 flex items-center justify-between group hover:bg-[#4a4d5e] transition-colors duration-200">
+                                    <span className="text-[#f8f8f2]">
+                                        {key === 'email' && "Email"}
+                                        {key === 'discord' && "Discord"}
+                                        {key === 'linkedin' && "LinkedIn"}
+                                        {key === 'genshinUid' && "Genshin UID"}
+                                        {key === 'projectSekaiId' && "Project Sekai ID"}
+                                    </span>
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-[#a6c9e2]">{value}</span>
+                                        <button
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(value);
+                                                const el = document.createElement('div');
+                                                el.className = 'fixed bottom-4 right-4 bg-[#73e2a6] text-[#282a36] py-2 px-4 rounded-lg z-50';
+                                                el.textContent = 'Copied!';
+                                                document.body.appendChild(el);
+                                                setTimeout(() => {
+                                                    el.remove();
+                                                }, 2000);
+                                            }}
+                                            className="text-[#73e2a6] hover:text-[#8ee8bb] transition-colors duration-200 p-1 rounded-md hover:bg-[#353846]"
+                                            title="Copy to clipboard"
+                                        >
+                                            <Copy size={16} />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
            </div>
        </div>
         {/* Skip Animation Button */}
         {!state.animationCompleted && (
-           <button
-               onClick={() => typeCode(true)}
-              className="fixed bottom-4 right-4 bg-[#44475a] text-[#f8f8f2] py-2 px-4 rounded-lg
-                        hover:bg-[#6272a4] transition-colors duration-200 z-50"
-          >
-              Skip Animation
-          </button>
-      )}
+            <button
+                onClick={() => typeCode(true)}
+                className="fixed bottom-4 right-4 bg-[#44475a] text-[#f8f8f2] py-2 px-4 rounded-lg
+                          hover:bg-[#6272a4] transition-colors duration-200 z-50"
+            >
+                Skip Animation
+            </button>
+        )}
       </div>
    );
 };
