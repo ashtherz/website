@@ -223,7 +223,7 @@ const copyContacts = {
     ];
 
 
-     const syntaxHighlight = (text) => {
+    const syntaxHighlight = (text) => {
         if (!text) return '';
         let highlighted = text;
         highlighted = highlighted.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="comment">$1</span>');
@@ -236,31 +236,37 @@ const copyContacts = {
             strings: '#e2a6e7',
             numbers: '#a6c9e2',
             functions: '#bf94e4',
-            variables: '#a6c9e2'
+            variables: '#a6c9e2',
+            default: '#ffffff'  // Add default text color
         } : {
             comments: '#808080',
             keywords: '#ffffff',
             strings: '#c0c0c0',
             numbers: '#a0a0a0',
             functions: '#d0d0d0',
-            variables: '#b0b0b0'
+            variables: '#b0b0b0',
+            default: '#ffffff'  // Add default text color
         };
 
         for (let i = 0; i < parts.length; i++) {
             if (i % 2 === 0) {
-                parts[i] = parts[i]
-                    .replace(/\b(const|let|var|function|return|import|export|from)\b(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.keywords}">$1</span>`)
-                    .replace(/(['"])(.*?)\1(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.strings}">$1$2$1</span>`)
-                    .replace(/\b(\d+)\b(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.numbers}">$1</span>`)
-                    .replace(/(\w+)(?=\s*\()(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.functions}">$1</span>`)
-                    .replace(/(\w+)(?=\s*:)(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.variables}">$1</span>`)
-                     .replace(/([{}\[\]])(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.keywords}">$1</span>`);
+                // Add default color to non-highlighted text
+                parts[i] = `<span style="color: ${colors.default}">${
+                    parts[i]
+                        .replace(/\b(const|let|var|function|return|import|export|from)\b(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.keywords}">$1</span>`)
+                        .replace(/(['"])(.*?)\1(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.strings}">$1$2$1</span>`)
+                        .replace(/\b(\d+)\b(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.numbers}">$1</span>`)
+                        .replace(/(\w+)(?=\s*\()(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.functions}">$1</span>`)
+                        .replace(/(\w+)(?=\s*:)(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.variables}">$1</span>`)
+                        .replace(/([{}\[\]])(?!(?:[^'"`]*(['"`])[^'"`]*\1)*[^'"`]*\1)/g, `<span style="color: ${colors.keywords}">$1</span>`)
+                }</span>`;
             } else {
                 parts[i] = `<span style="color: ${colors.comments}">${parts[i]}</span>`;
             }
         }
         return parts.join('');
     };
+
 
     const typeCode = async (skip = false) => {
           let currentText = '';
@@ -346,16 +352,19 @@ const copyContacts = {
         <div className="w-full md:w-1/2 h-[50vh] md:h-screen">
             <pre
                 ref={codeRef}
-                 className="h-full overflow-auto font-mono text-sm md:text-base p-4 transition-all duration-500"
+                 className="h-full overflow-auto font-mono text-sm md:text-base p-4 transition-all duration-500 text-white"
                 style={{
                     ...state.appliedPreStyles,
                     lineHeight: '1.6',
                      backgroundColor: '#1e1e1e',
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
-                    transition: 'all 0.5s ease-in-out'
+                    transition: 'all 0.5s ease-in-out',
+                      color: '#ffffff' // Explicitly set text color
                 }}
             >
                 <code
+                    className="text-white"  // Add text color class
+                    style={{ color: '#ffffff' }} // Also add inline style for redundancy
                     dangerouslySetInnerHTML={{
                         __html: syntaxHighlight(state.displayedCode)
                     }}
