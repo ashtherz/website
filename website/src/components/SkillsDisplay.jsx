@@ -1,11 +1,12 @@
 import React from 'react';
 import { SiJavascript, SiTypescript, SiPython, SiAndroid, SiCodeforces, SiGo, SiReact, SiNextdotjs,
     SiTailwindcss, SiHtml5, SiStyledcomponents, SiNodedotjs, SiExpress, SiDocker,
-    SiPostgresql, SiGit, SiFigma, SiLinux, SiAmazon } from "react-icons/si";
+    SiPostgresql, SiGit, SiFigma, SiLinux, SiAmazon, SiCplusplus } from "react-icons/si";
 const skillIcons = {
     JavaScript: <SiJavascript />,
     TypeScript: <SiTypescript />,
     Python: <SiPython />,
+     "C/C++": <SiCplusplus />,
     Java: <SiAndroid />,
     Rust: <SiCodeforces />,
     Go: <SiGo />,

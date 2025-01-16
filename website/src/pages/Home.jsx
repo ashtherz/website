@@ -13,11 +13,10 @@ const SITE_DATA = {
     skills: {
         languages: [
             { name: "JavaScript", level: "Advanced" },
-            { name: "TypeScript", level: "Advanced" },
             { name: "Python", level: "Advanced" },
+            { name: "C/C++", level: "Advanced" },
             { name: "Java", level: "Intermediate" },
             { name: "Rust", level: "Intermediate" },
-            { name: "Go", level: "Intermediate" }
         ],
         frontend: [
             { name: "React", level: "Advanced" },
@@ -42,35 +41,68 @@ const SITE_DATA = {
     projects: [
         {
             name: "APIOverflow",
-            description: "A super cool api hub library",
+            description: "A super cool API hub library",
             tech: ["typescript", "react", "tailwind", "python", "prisma", "pytest", "mongodb", "docker"],
-            github: "github.com/unsw-cse-comp99-3900/APIOverflow"
+            github: "github.com/unsw-cse-comp99-3900/APIOverflow",
+            images: [
+                "/images/apioverflow/img1.png",
+                "/images/apioverflow/img2.png",
+                "/images/apioverflow/img3.png",
+                "/images/apioverflow/img4.png",
+                "/images/apioverflow/img5.png"
+            ]
         },
         {
             name: "Nerd Station",
             description: "Award-winning study platform combining study tools with gamification elements - 3rd place at Google DSC Hackathon",
             tech: ["typescript", "figma", "tailwind"],
-            github: "gdsc-hackathon-2023.web.app"
+            github: "gdsc-hackathon-2023.web.app",
+            images: [
+                "/images/nerd-station/img1.png",
+                "/images/nerd-station/img2.png",
+                "/images/nerd-station/img3.png"
+            ]
         },
         {
             name: "SPLIT",
             description: "A web application that helps users easily split bills within large groups and track expenses by scanning or manually adding bills",
             tech: ["docker", "express.js", "next.js", "react", "shadcn", "tailwind", "vercel"],
-            github: "devpost.com/software/split-utm8ph"
+            github: "devpost.com/software/split-utm8ph",
+            images: [
+                "/images/split/img1.png",
+                "/images/split/img2.png",
+                "/images/split/img3.png",
+                "/images/split/img4.png",
+                "/images/split/img5.png"
+            ]
         },
         {
             name: "BeBetter",
             description: "Social fitness app that calculates calories and exercise requirements, built during CSESoc x DevSoc Hackathon",
             tech: ["express.js", "gsap", "next.js", "react", "tailwind", "typescript"],
-            github: "devpost.com/software/bebetter-vqs9fg"
+            github: "devpost.com/software/bebetter-vqs9fg",
+            images: [
+                "/images/bebetter/img1.png",
+                "/images/bebetter/img2.png",
+                "/images/bebetter/img3.png",
+                "/images/bebetter/img4.png"
+            ]
         },
         {
             name: "Pi Website",
             description: "Interactive website to help memorize and recite 314 digits of pi accurately",
             tech: ["html", "css", "javascript"],
-            github: "ashtherz.github.io/pi-cat/"
+            github: "ashtherz.github.io/pi-cat/",
+            images: ["/images/pi/img1.png"]
+        },
+        {
+            name: "Society Marketing Bot",
+            description: "A Discord bot that streamlines society marketing requests and approvals through an interactive form system.",
+            tech: ["discord.py", "python"],
+            github: "github.com/ashtherz/cpmsoc-bot",
+            images: ["/images/cpm-bot/img1.png", "/images/cpm-bot/img2.png"]
         }
-    ],
+    ],    
     education: [
         {
             institution: "University of New South Wales",

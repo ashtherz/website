@@ -97,12 +97,11 @@ const editorTheme = {
 
 const mySkills = {
     languages: [
-        { name: "JavaScript", level: "Advanced" },
-        { name: "TypeScript", level: "Advanced" },
+        { name: "JS/TS", level: "Advanced" },
         { name: "Python", level: "Advanced" },
+        { name: "C/C++", level: "Advanced" },
         { name: "Java", level: "Intermediate" },
         { name: "Rust", level: "Intermediate" },
-        { name: "Go", level: "Intermediate" }
     ],
     frontend: [
         { name: "React", level: "Advanced" },
