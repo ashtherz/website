@@ -107,7 +107,7 @@ const SITE_DATA = {
         {
             institution: "University of New South Wales",
             degree: "Bachelor of Computer Science",
-            years: "2022-2024"
+            years: "2022-2025"
         }
     ],
     hobbies: [
